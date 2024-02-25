@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  managedhost-app-1:
+    build: 
+      context: managed-host/alpine/app1
+    restart: unless-stopped
+    network_mode: "bridge"
+    environment:
+      - SSH_ENABLE_ROOT=true
+  managedhost-app-2:
+    build: 
+      context: managed-host/alpine/app2
+    restart: unless-stopped
+    network_mode: "bridge"
+    environment:
+      - SSH_ENABLE_ROOT=true
+  managedhost-app-3:
+    build: 
+      context: managed-host/alpine/app3
+    restart: unless-stopped
+    network_mode: "bridge"
+    environment:
+      - SSH_ENABLE_ROOT=true
