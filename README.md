@@ -1,0 +1,1 @@
+A fully dockerized environment to play with ansible.
