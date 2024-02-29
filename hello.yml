@@ -49,3 +49,24 @@
     command: forever start /node-app/app.js
     when: "forever_list.stdout.find('/node-app/app.js') == -1"
 
+#Third Play
+- name: Install Nginx
+  hosts: loadbalancer-host
+  become: true
+  tasks:
+    - name: Install Nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Copy Nginx configuration file
+      copy:
+        src: ./nginx/nginx.conf
+        dest: ./nginx/nginx.conf
+      notify: Reload Nginx
+
+- name: Ensure Node.js servers are running
+  hosts: managedhost-app-1, managedhost-app-2, managedhost-app-3
+  become: true
+  tasks:
+    # Add tasks to ensure Node.js servers are running (e.g., start the Node.js service)
